@@ -10,118 +10,111 @@ using WebAppsCW2.Models;
 
 namespace WebAppsCW2.Controllers
 {
-    public class AnnouncementsController : Controller
+    public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Announcements
+        // GET: Comments
         public ActionResult Index()
         {
-            return View(db.Announcements.ToList());
+            return View(db.Comments.ToList());
         }
 
-        // GET: Announcements/Details/5
-        [Authorize(Roles = "Lecturer")]
+        // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Announcement announcement = db.Announcements.Find(id);
-            if (announcement == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(announcement);
+            return View(comment);
         }
 
-        // GET: Announcements/Create
-        [Authorize(Roles = "Lecturer")]
+        // GET: Comments/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Announcements/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Lecturer")]
-        public ActionResult Create([Bind(Include = "ID,Title,Body")] Announcement announcement)
+        public ActionResult Create([Bind(Include = "ID,CommentBody")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Announcements.Add(announcement);
+                db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(announcement);
+            return View(comment);
         }
 
-        // GET: Announcements/Edit/5
-        [Authorize(Roles = "Lecturer")]
+        // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Announcement announcement = db.Announcements.Find(id);
-            if (announcement == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(announcement);
+            return View(comment);
         }
 
-        // POST: Announcements/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Lecturer")]
-        public ActionResult Edit([Bind(Include = "ID,Title,Body")] Announcement announcement)
+        public ActionResult Edit([Bind(Include = "ID,CommentBody")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(announcement).State = EntityState.Modified;
+                db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(announcement);
+            return View(comment);
         }
 
-        // GET: Announcements/Delete/5
-        [Authorize(Roles = "Lecturer")]
+        // GET: Comments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Announcement announcement = db.Announcements.Find(id);
-            if (announcement == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(announcement);
+            return View(comment);
         }
 
-        // POST: Announcements/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Lecturer")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Announcement announcement = db.Announcements.Find(id);
-            db.Announcements.Remove(announcement);
+            Comment comment = db.Comments.Find(id);
+            db.Comments.Remove(comment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-       
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
