@@ -179,9 +179,9 @@
     <Compile Include="Migrations\201612171753367_add-migration .Designer.cs">
       <DependentUpon>201612171753367_add-migration .cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612171811411_FUCK MATT.cs" />
-    <Compile Include="Migrations\201612171811411_FUCK MATT.Designer.cs">
-      <DependentUpon>201612171811411_FUCK MATT.cs</DependentUpon>
+    <Compile Include="Migrations\201612181944110_comments.cs" />
+    <Compile Include="Migrations\201612181944110_comments.Designer.cs">
+      <DependentUpon>201612181944110_comments.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -273,8 +273,8 @@
     <EmbeddedResource Include="Migrations\201612171753367_add-migration .resx">
       <DependentUpon>201612171753367_add-migration .cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612171811411_FUCK MATT.resx">
-      <DependentUpon>201612171811411_FUCK MATT.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612181944110_comments.resx">
+      <DependentUpon>201612181944110_comments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

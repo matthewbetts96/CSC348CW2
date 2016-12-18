@@ -2,11 +2,11 @@ namespace WebAppsCW2.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using WebAppsCW2.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using WebAppsCW2.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<WebAppsCW2.Models.ApplicationDbContext>
     {
@@ -44,6 +44,7 @@ namespace WebAppsCW2.Migrations
             var um5 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             um5.Create(User5, "password");
 
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var Stu1 = UserManager.FindByName("Student1@email.com");
             um.AddToRole(Stu1.Id, "Student");
             var Stu2 = UserManager.FindByName("Student2@email.com");
@@ -54,6 +55,7 @@ namespace WebAppsCW2.Migrations
             um4.AddToRole(Stu4.Id, "Student");
             var Stu5 = UserManager.FindByName("Student5@email.com");
             um5.AddToRole(Stu5.Id, "Student");    
+            
         }
         void AddLecturer(WebAppsCW2.Models.ApplicationDbContext context)
         {

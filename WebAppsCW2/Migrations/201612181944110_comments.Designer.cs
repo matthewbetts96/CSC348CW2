@@ -7,13 +7,13 @@ namespace WebAppsCW2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class FUCKMATT : IMigrationMetadata
+    public sealed partial class comments : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FUCKMATT));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(comments));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612171811411_FUCK MATT"; }
+            get { return "201612181944110_comments"; }
         }
         
         string IMigrationMetadata.Source
