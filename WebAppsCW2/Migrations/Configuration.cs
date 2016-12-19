@@ -25,36 +25,36 @@ namespace WebAppsCW2.Migrations
         void AddUser(WebAppsCW2.Models.ApplicationDbContext context)
         {
             var User = new ApplicationUser { UserName = "Student1@email.com" };
-            var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            um.Create(User, "password");
+            var usr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            usr.Create(User, "password");
 
             var User2 = new ApplicationUser { UserName = "Student2@email.com" };
-            var um2 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            um2.Create(User2, "password");
+            var usr2 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            usr2.Create(User2, "password");
 
             var User3 = new ApplicationUser { UserName = "Student3@email.com" };
-            var um3 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            um3.Create(User3, "password");
+            var usr3 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            usr3.Create(User3, "password");
 
             var User4 = new ApplicationUser { UserName = "Student4@email.com" };
-            var um4 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            um4.Create(User4, "password");
+            var usr4 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            usr4.Create(User4, "password");
 
             var User5 = new ApplicationUser { UserName = "Student5@email.com" };
-            var um5 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            um5.Create(User5, "password");
+            var usr5 = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            usr5.Create(User5, "password");
 
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var Stu1 = UserManager.FindByName("Student1@email.com");
-            um.AddToRole(Stu1.Id, "Student");
+            usr.AddToRole(Stu1.Id, "Student");
             var Stu2 = UserManager.FindByName("Student2@email.com");
-            um2.AddToRole(Stu2.Id, "Student");
+            usr2.AddToRole(Stu2.Id, "Student");
             var Stu3 = UserManager.FindByName("Student3@email.com");
-            um3.AddToRole(Stu3.Id, "Student");
+            usr3.AddToRole(Stu3.Id, "Student");
             var Stu4 = UserManager.FindByName("Student4@email.com");
-            um4.AddToRole(Stu4.Id, "Student");
+            usr4.AddToRole(Stu4.Id, "Student");
             var Stu5 = UserManager.FindByName("Student5@email.com");
-            um5.AddToRole(Stu5.Id, "Student");    
+            usr5.AddToRole(Stu5.Id, "Student");    
             
         }
         void AddLecturer(WebAppsCW2.Models.ApplicationDbContext context)

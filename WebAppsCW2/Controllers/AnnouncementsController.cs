@@ -21,7 +21,6 @@ namespace WebAppsCW2.Controllers
         }
 
         // GET: Announcements/Details/5
-        [Authorize(Roles = "Lecturer")]
         public ActionResult Details(int? id)
         {
             if (id == null)

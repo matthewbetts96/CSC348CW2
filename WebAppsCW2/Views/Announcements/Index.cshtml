@@ -29,9 +29,13 @@
             @Html.DisplayFor(modelItem => item.Body)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (ViewContext.HttpContext.User.IsInRole("Lecturer"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })<b>|</b>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })<b>|</b>
+            }          
+            @Html.ActionLink("View Comments", "Details", new { id = item.ID })
+            
         </td>
     </tr>
 }
