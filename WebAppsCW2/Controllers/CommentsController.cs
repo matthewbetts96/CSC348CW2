@@ -14,6 +14,19 @@ namespace WebAppsCW2.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //should add the data, doesn't actually work though
+        private List<Comment> AjaxComments(Comment Comment)
+        {
+            int commentID = Comment.ID;
+            string des = Comment.CommentBody;
+            ApplicationUser theUser = Comment.User;
+
+            db.Comments.Add(Comment);
+            db.SaveChanges();
+
+            return null;
+        }
+
         // GET: Comments
         public ActionResult Index()
         {
@@ -56,6 +69,19 @@ namespace WebAppsCW2.Controllers
             }
 
             return View(comment);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AJAXCreate([Bind(Include = "CommentBody,AnnounceID")]Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return PartialView("_CommentsPartial", db.Comments.ToList());
+            }
+            return PartialView("_CommentsPartial", db.Comments.ToList());
         }
 
         // GET: Comments/Edit/5

@@ -28,11 +28,13 @@ namespace WebAppsCW2.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Announcement announcement = db.Announcements.Find(id);
+            CommentAnnounce An = new CommentAnnounce();
             if (announcement == null)
             {
                 return HttpNotFound();
             }
-            return View(announcement);
+            An.Announce = announcement;
+            return View(An);
         }
 
         // GET: Announcements/Create
@@ -128,6 +130,12 @@ namespace WebAppsCW2.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //Returns the comments in a partial view
+        public ActionResult showComments()
+        {
+            return PartialView("_CommentsPartial", db.Comments.ToList());
         }
     }
 }

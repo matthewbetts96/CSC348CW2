@@ -1,4 +1,4 @@
-﻿@model WebAppsCW2.Models.Announcement
+﻿@model WebAppsCW2.Models.CommentAnnounce
 
 @{
     ViewBag.Title = "Details";
@@ -11,29 +11,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.Announce.Title)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.Announce.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Body)
+            @Html.DisplayNameFor(model => model.Announce.Body)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            @Html.DisplayFor(model => model.Announce.Body)
         </dd>
     </dl>
 </div>
 
+@Html.Partial("_CommentsPartial")
 
-@if (ViewContext.HttpContext.User.IsInRole("Lecturer") || ViewContext.HttpContext.User.IsInRole("Student"))
-{
-    //@Html.EditorFor(model => model.CommentBody, new { htmlAttributes = new { @class = "form-control" } })
-}
+<div>
 
-@{
-    Layout = "~/Views/Shared/_CommentsPartial.cshtml";
-}
+    @using (Ajax.BeginForm("AJAXComments", "Comments", new AjaxOptions
+         {
+         HttpMethod = "POST",
+         InsertionMode = InsertionMode.Replace,
+         UpdateTargetId = "target"
+         }))
+    {
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(model => model.Comment.CommentBody, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment.CommentBody, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comment.CommentBody, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Comment.AnnounceID, new { Value = Url.RequestContext.RouteData.Values["id"] })
+
+            </div>
+        </div>
+    }
+</div>
 
 <p>
     @Html.ActionLink("Back to List", "Index")

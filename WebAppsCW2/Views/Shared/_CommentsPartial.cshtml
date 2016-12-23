@@ -1,36 +1,26 @@
-﻿@model WebAppsCW2.Models.Announcement
+﻿@model WebAppsCW2.Models.CommentAnnounce
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
-</head>
-<body>
-    <div id="target">
-        @using (Ajax.BeginForm("AJAXComments", "Comments",
-            new AjaxOptions
-            {
-                HttpMethod = "POST",
-                InsertionMode = InsertionMode.Replace,
-                UpdateTargetId = "target"
-            }))
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment.User)
+        </th>
+    </tr>
+    @if (Model.Announce.Comments != null)
+    {
+        foreach (var item in Model.Announce.Comments)
         {
-            <b>hello</b>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentBody)
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
         }
-    </div>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+    }
+</table>
